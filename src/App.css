@@ -19,7 +19,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -35,4 +34,109 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/****************************************************/
+#Grid-selector hr {
+  border: none;
+  border-top: 2px solid #f5f2f2;
+  height: 1px;
+}
+
+#Grid-selector input[type="radio"] {
+  display: block;
+}
+
+#Grid-selector #playPanel {
+  padding: 10px 0px;
+  margin: 10px auto;
+  max-width: 800px;
+  width: 95%;
+}
+
+#Grid-selector #actualImageBox {
+  display: inline-block;
+  font-size: 0.8em;
+  margin: 10px 10px;
+  vertical-align: top;
+  width: 280px;
+}
+
+#Grid-selector #stepBox,
+#Grid-selector #timeBox {
+  display: inline-block;
+  width: 48%;
+}
+
+#Grid-selector #stepBox div {
+  background-color: #c2defc;
+  display: inline-block;
+  padding: 1px 4px;
+  margin: 0px auto;
+  max-width: 800px;
+}
+
+#Grid-selector img#actualImage {
+  /* height: 280px; */
+  width: 280px;
+}
+section {
+  position: relative;
+  list-style-type: none;
+  display: inline-block;
+  padding: 0;
+  width: 450px;
+}
+
+#Grid-selector #sortable {
+  position: relative;
+  list-style-type: none;
+  display: inline-block;
+  margin: 10px;
+  padding: 0;
+  width: 400px;
+}
+
+#Grid-selector #sortable::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: none;
+}
+#Grid-selector #sortable::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: none;
+}
+
+#Grid-selector #sortable li {
+  background-size: 400% 400%;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+#Grid-selector button {
+  background-color: #f5f2f2;
+  border: 1px solid #cce;
+  display: inline;
+  font-size: 14px;
+  height: auto;
+  width: auto;
+  padding: 3px 8px;
 }
