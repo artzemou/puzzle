@@ -1,30 +1,29 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#Nav-bar{
+  position: absolute;
+  z-index: 100;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Cropper-controls{
+  position: absolute;
+  left: 0;
+  right:0;
+  bottom: 2rem;
+  z-index: 10;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Cropper-btn-crop {
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  padding: 1rem;
+  background-color: blueviolet;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 }
-
-.App-link {
-  color: #61dafb;
+#stage-parent {
+  max-width: 500px;
 }
 
 @keyframes App-logo-spin {
@@ -37,6 +36,22 @@
 }
 
 /****************************************************/
+.Nav-bar{
+  display: flex;
+}
+.Nav-bar a {
+  display: block;
+  height: 100%;
+}
+.Nav-bar li {
+  list-style-type: none;
+}
+
+#Grid-selector a, #Thumbs-list a {
+  display: block;
+  height: 100%;
+}
+
 #Grid-selector hr {
   border: none;
   border-top: 2px solid #f5f2f2;
@@ -80,13 +95,13 @@
   /* height: 280px; */
   width: 280px;
 }
-section {
+/* section {
   position: relative;
   list-style-type: none;
   display: inline-block;
   padding: 0;
   width: 450px;
-}
+} */
 
 #Grid-selector #sortable {
   position: relative;
@@ -94,30 +109,11 @@ section {
   display: inline-block;
   margin: 10px;
   padding: 0;
-  width: 400px;
-}
-
-#Grid-selector #sortable::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -10px;
-  left: 0;
-  right: 0;
-  height: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-top: none;
-}
-#Grid-selector #sortable::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: none;
+  /* width: 496.1px;
+  height: 350.8px; */
+  width: 800px;
+  height: 800px;
+  background-color: rebeccapurple;
 }
 
 #Grid-selector #sortable li {
@@ -131,7 +127,7 @@ section {
   height: 100px;
 }
 
-#Grid-selector button {
+/* #Grid-selector button {
   background-color: #f5f2f2;
   border: 1px solid #cce;
   display: inline;
@@ -140,3 +136,4 @@ section {
   width: auto;
   padding: 3px 8px;
 }
+ */
