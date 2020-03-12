@@ -162,41 +162,90 @@ const CropperGrid = (props) => {
     // adapt the stage on any window resize
     window.addEventListener('resize', fitStageIntoParentContainer);
   
+//     var axisX = new Konva.Line({
+//       points: [-200, 0, 200, 0],
+//       stroke: 'red',
+//       strokeWidth: 2,
+//       lineCap: 'round',
+//       lineJoin: 'round'
+//     });
+  
+// var axisY = new Konva.Line({
+//       points: [0, 200, 0, -200],
+//       stroke: 'red',
+//       strokeWidth: 2,
+//       lineCap: 'round',
+//       lineJoin: 'round'
+//     }); 
+    var scaleBy = 2;
+
     stage.on('wheel', e => {
-      console.log(e)
-      // e.evt.preventDefault();
-      if (e.evt.deltaY < 0)
-        {
-          console.log('scrolling up');
-          setZoom(zoom + .1)
-        }
-        else if (e.evt.deltaY > 0)
-        {
-          console.log('scrolling down');
-          setZoom(zoom - .1)
-        }
-      // var oldScale = stage.scaleX();
+      e.evt.preventDefault();
+        var oldScale = stage.scaleX();
 
-      // var mousePointTo = {
-      //   x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
-      //   y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
-      // };
+        var mousePointTo = {
+          x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
+          y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
+        };
 
-      // var newScale =
-      //   e.evt.deltaY > 0 ? oldScale * zoom : oldScale / zoom;
-      // stage.scale({ x: newScale, y: newScale });
+        var newScale =
+          e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+        stage.scale({ x: newScale, y: newScale });
 
-      // var newPos = {
-      //   x:
-      //     -(mousePointTo.x - stage.getPointerPosition().x / newScale) *
-      //     newScale,
-      //   y:
-      //     -(mousePointTo.y - stage.getPointerPosition().y / newScale) *
-      //     newScale
-      // };
-      // stage.position(newPos);
-      // stage.batchDraw();
+        var newPos = {
+          x:
+            -(mousePointTo.x - stage.getPointerPosition().x / newScale) *
+            newScale,
+          y:
+            -(mousePointTo.y - stage.getPointerPosition().y / newScale) *
+            newScale
+        };
+        stage.position(newPos);
+        stage.batchDraw();
+
+
     });
+
+    var lastDist = 0;
+
+    function getDistance(p1, p2) {
+      return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+    }
+    
+    stage.on('touchmove', function(e) {
+      e.evt.preventDefault();
+      var touch1 = e.evt.touches[0];
+      var touch2 = e.evt.touches[1];
+
+      if (touch1 && touch2) {
+        var dist = getDistance(
+          {
+            x: touch1.clientX,
+            y: touch1.clientY
+          },
+          {
+            x: touch2.clientX,
+            y: touch2.clientY
+          }
+        );
+
+        if (!lastDist) {
+          lastDist = dist;
+        }
+
+        var scale = (stage.scaleX() * dist) / lastDist;
+
+        stage.scaleX(scale);
+        stage.scaleY(scale);
+        stage.batchDraw();
+        lastDist = dist;
+      }
+    });
+
+    stage.on('touchend', function() {
+      lastDist = 0;
+    });
+
 
     setStage(stage)
   }
