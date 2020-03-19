@@ -20,7 +20,7 @@ const baseStyle = {
   transition: 'border .24s ease-in-out'
 };
 
-const Upload = (props) => {
+const Upload = ({setImages}) => {
     let history = useHistory();
   
     const {acceptedFiles, getRootProps, getInputProps} = useDropzone({
@@ -35,7 +35,7 @@ const Upload = (props) => {
           })
           .then(res => res.json())
           .then(json => {
-            props.setSrc('https://spgp-api-pre.65mo.fr' + json.url)
+            setImages([{ src: 'https://spgp-api-pre.65mo.fr' + json.url}])
             history.push('/crop')
   
           })

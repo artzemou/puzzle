@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
+import React from 'react';
+import { Link } from "react-router-dom";
 
-const Image = (props) => {
-    const [thumbs, setThumbs] = useState([])
-    const id = props.match.params.id
-    useEffect(() => {
-        let data = JSON.parse(window.localStorage.getItem('data'))
-        console.log(data)
-        setThumbs(data)
-    }, [])
+const Image = ({match, thumbs, setThumbs}) => {
+    const id = match.params.id
+    console.log(thumbs)
     if (thumbs.length) {
+        console.log(thumbs)
         return (
             <ul id="Thumbs-list">
                 <li style={{
@@ -20,7 +17,6 @@ const Image = (props) => {
                     overflow: 'hidden'}}>{id}
                     </li>
                     {thumbs.map(thumb => {
-                        console.log(thumb.id !== thumbs[id].id )
                         if (thumb.id !== thumbs[id].id) {
                             return (
                               <li key={thumb.id} style={{
@@ -29,7 +25,7 @@ const Image = (props) => {
                                 backgroundPosition: thumb.backgroundPosition,
                                 width: thumb.width,
                                 height: thumb.height,
-                                overflow: 'hidden'}}><a href={`/gridselector/${thumb.id}`}>{thumb.id}</a></li>                  
+                                overflow: 'hidden'}}><Link to={`/gridselector/${thumb.id}`}></Link></li>                  
                             ) 
                         }
                     })}

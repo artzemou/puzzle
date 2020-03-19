@@ -25,6 +25,9 @@
 #stage-parent {
   max-width: 500px;
 }
+canvas{
+  border: 1px solid rgba(0,0,0,.2) !important;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -93,7 +96,7 @@
 
 #Grid-selector img#actualImage {
   /* height: 280px; */
-  width: 280px;
+  width: 500px;
 }
 /* section {
   position: relative;
@@ -111,9 +114,8 @@
   padding: 0;
   /* width: 496.1px;
   height: 350.8px; */
-  width: 800px;
-  height: 800px;
-  background-color: rebeccapurple;
+  width: 500px;
+  height: 350px;
 }
 
 #Grid-selector #sortable li {
