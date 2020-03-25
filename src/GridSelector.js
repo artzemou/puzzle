@@ -53,14 +53,21 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
 
     useEffect(() => {
         if(images.length) cut(images)
-        var element = document.querySelector('#Grid-selector')
-        panzoom(element)
+        var element = helper.doc('Grid-selector')
+        panzoom(element, {
+            onDoubleClick: function(e) {
+              // `e` - is current double click event.
+          
+              return false; // tells the library to not preventDefault, and not stop propagation
+            }
+          })
       
     }, [cut, images])
 
     console.log(thumbs)
     return (
-        <div id="Grid">
+        <>
+            <div id="Grid">
                 <section id="Grid-selector">
                     <ul id="sortable" className="sortable">
                         {thumbs.map((thumb)=>(
@@ -73,14 +80,35 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
                                 overflow: 'hidden',
                                 boxShadow: 'inset 0 0 1px rgba(0, 0, 0, .5)',
                                 backgroundRepeat:thumb.backgroundRepeat}}>
-                                    <Link onClick={(e) => e.preventDefault()} to={`/gridselector/${thumb.id}`}></Link>
+                                    <Link 
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                        }} 
+                                        onDoubleClick={(e) => {
+                                            console.log(`${thumb.id} is dblcClicked`)
+                                        }} 
+                                        to={`/gridselector/${thumb.id}`}></Link>
                             </li>
                         ))} 
                     </ul>
                 </section>
-                <div id="actualImageBox">
-                    <img alt="" id="actualImage" src={images[0]["src"]}/>
-                    <p id="levelPanel">
+            </div>
+            <div id="actualImageBox">
+                <button onClick={(e) => {
+                    if(document.querySelector("#sortable li").style.boxShadow !== 'none') {
+                        document.querySelectorAll("#sortable li").forEach(el => {
+                            el.style.boxShadow ='none'
+                        });
+                    }
+                    else {
+                        document.querySelectorAll("#sortable li").forEach(el => {
+                            el.style.boxShadow ='inset 0 0 1px rgba(0, 0, 0, .5)'
+                        });
+                    }
+                }}>Disable grid</button> 
+
+
+                 {/* <p id="levelPanel">
                         <input 
                           type="radio" 
                           name="level" 
@@ -102,9 +130,9 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
                           onChange={(e) => cut(images, e.target.value)}
                         /> 
                         <label htmlFor="hard">10 x 10</label>
-                    </p>
-                </div>
-            </div>                  
+                </p> */}
+            </div>
+        </>                 
     )
 }
 
