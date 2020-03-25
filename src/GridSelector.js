@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from "react-router-dom";
+import panzoom from "panzoom"
+
 
 var helper = {
     doc: (id) => document.getElementById(id) || document.createElement("div"),
@@ -46,17 +48,20 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
                 // helper.doc('sortable').appendChild(li);
             }
             setThumbs(data)
+           
         }, [setThumbs])
 
     useEffect(() => {
-      if(images.length) cut(images)
+        if(images.length) cut(images)
+        var element = document.querySelector('#Grid-selector')
+        panzoom(element)
+      
     }, [cut, images])
 
     console.log(thumbs)
     return (
-        <div id="Grid-selector">
-        <div style={{display:"inline-block", margin:"auto", width:"100%", verticalAlign:"top"}}>
-                <section>
+        <div id="Grid">
+                <section id="Grid-selector">
                     <ul id="sortable" className="sortable">
                         {thumbs.map((thumb)=>(
                             <li key={thumb.id} style={{
@@ -68,9 +73,9 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
                                 overflow: 'hidden',
                                 boxShadow: 'inset 0 0 1px rgba(0, 0, 0, .5)',
                                 backgroundRepeat:thumb.backgroundRepeat}}>
-                                    <Link to={`/gridselector/${thumb.id}`}></Link>
+                                    <Link onClick={(e) => e.preventDefault()} to={`/gridselector/${thumb.id}`}></Link>
                             </li>
-                        ))}
+                        ))} 
                     </ul>
                 </section>
                 <div id="actualImageBox">
@@ -100,7 +105,6 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
                     </p>
                 </div>
             </div>                  
-        </div>
     )
 }
 

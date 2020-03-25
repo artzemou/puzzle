@@ -15,8 +15,10 @@ const CropperGrid = ({src, setImages}) => {
   }, [src, rotation, zoom])
 
   const transformImg = (src, zoom, rotation) => {
+    
     var stageWidth = 500 ;
     var stageHeight = 350;
+    
   
     var stage = new Konva.Stage({
       container: 'container',
@@ -42,6 +44,11 @@ const CropperGrid = ({src, setImages}) => {
       img.rotate(rotation);
       layer.add(img);
       layer.batchDraw();
+      const tr = new Konva.Transformer({
+        node: img,
+        // enabledAnchors: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+      });
+      layer.add(tr)
     });
 
     function fitStageIntoParentContainer() {
