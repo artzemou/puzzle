@@ -9,7 +9,7 @@ const Image = ({match, thumbs, setThumbs}) => {
         return (
             <ul id="Thumbs-list">
                 <li style={{
-                    backgroundImage: thumbs[id].backgroundImage,
+                    backgroundImage: thumbs[id].backgroundImage, 
                     backgroundSize: thumbs[id].backgroundSize,
                     backgroundPosition: thumbs[id].backgroundPosition,
                     width: 150,
