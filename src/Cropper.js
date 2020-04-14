@@ -44,11 +44,11 @@ const CropperGrid = ({src, setImages}) => {
       img.rotate(rotation);
       layer.add(img);
       layer.batchDraw();
-    //   const tr = new Konva.Transformer({
-    //     node: img,
-    //     // enabledAnchors: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
-    //   });
-    //   layer.add(tr)
+      //   const tr = new Konva.Transformer({
+      //     node: img,
+      //     // enabledAnchors: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+      //   });
+      //   layer.add(tr)
     });
 
     function fitStageIntoParentContainer() {
