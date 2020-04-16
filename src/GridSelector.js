@@ -55,11 +55,11 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
         if(images.length) cut(images)
         var element = helper.doc('Grid-selector')
         panzoom(element, {
-            onDoubleClick: function(e) {
-              // `e` - is current double click event.
+            // onDoubleClick: function(e) {
+            //   // `e` - is current double click event.
           
-              return false; // tells the library to not preventDefault, and not stop propagation
-            }
+            //   return false; // tells the library to not preventDefault, and not stop propagation
+            // }
           })
       
     }, [cut, images])
@@ -81,13 +81,16 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
                                 boxShadow: 'inset 0 0 1px rgba(0, 0, 0, .5)',
                                 backgroundRepeat:thumb.backgroundRepeat}}>
                                     <Link 
-                                        onClick={(e) => {
-                                            e.preventDefault()
-                                        }} 
+                                        // onClick={(e) => {
+                                        //     e.preventDefault()
+                                        //     window.location =  `${window.location}/${thumb.id}`
+                                        // }} 
                                         onDoubleClick={(e) => {
                                             console.log(`${thumb.id} is dblcClicked`)
                                         }} 
-                                        to={`/gridselector/${thumb.id}`}></Link>
+                                        to={`/gridselector/${thumb.id}`}
+                                        >
+                                    </Link>
                             </li>
                         ))} 
                     </ul>

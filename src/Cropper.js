@@ -14,7 +14,7 @@ const CropperGrid = ({src, setImages}) => {
       transformImg(src, zoom, rotation)
   }, [src, rotation, zoom])
 
-  const transformImg = (src, zoom, rotation) => {
+  const transformImg = (src, zoom, rotation, draggable=false) => {
     
     var stageWidth = 500 ;
     var stageHeight = 350;
@@ -35,7 +35,7 @@ const CropperGrid = ({src, setImages}) => {
     
     Konva.Image.fromURL(src || "https://spgp-api-pre.65mo.fr/api/containers/spgp/download/06c80ebb-481c-46d2-956d-5871a540cbf7.png", img => {
       console.log(img)
-      // img.draggable(true)
+      img.draggable(draggable)
       img.offsetX(img.width() / 2);
       img.offsetY(img.height() / 2);
       img.scale({x:zoom, y:zoom})
