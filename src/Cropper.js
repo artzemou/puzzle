@@ -31,6 +31,34 @@ const CropperGrid = ({src, setImages}) => {
     var layer = new Konva.Layer();
     stage.add(layer);
 
+    // adapt the stage on any window resize
+    function fitStageIntoParentContainer() {
+      var container = document.querySelector('#stage-parent');
+
+      // now we need to fit stage into parent
+      var containerWidth = container.offsetWidth;
+      // to do this we need to scale the stage
+      var scale = containerWidth / stageWidth;
+
+      stage.width(stageWidth * scale);
+      stage.height(stageHeight * scale);
+      stage.scale({ x: scale, y: scale });
+      stage.draw();
+    }
+
+    fitStageIntoParentContainer();
+    
+
+    function isMobile() {
+      var match = window.matchMedia || window.msMatchMedia;
+      if(match) {
+          var mq = match("(pointer:coarse)");
+          return mq.matches;
+      }
+      return false;
+    }
+
+    draggable = isMobile()
 
     
     Konva.Image.fromURL(src || "https://spgp-api-pre.65mo.fr/api/containers/spgp/download/06c80ebb-481c-46d2-956d-5871a540cbf7.png", img => {
@@ -51,24 +79,8 @@ const CropperGrid = ({src, setImages}) => {
       //   layer.add(tr)
     });
 
-    function fitStageIntoParentContainer() {
-      var container = document.querySelector('#stage-parent');
 
-      // now we need to fit stage into parent
-      var containerWidth = container.offsetWidth;
-      // to do this we need to scale the stage
-      var scale = containerWidth / stageWidth;
-
-      stage.width(stageWidth * scale);
-      stage.height(stageHeight * scale);
-      stage.scale({ x: scale, y: scale });
-      stage.draw();
-    }
-
-    fitStageIntoParentContainer();
-    // adapt the stage on any window resize
-    window.addEventListener('resize', fitStageIntoParentContainer);
-  
+    
 
     
     //zoom on scroll

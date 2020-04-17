@@ -22,6 +22,7 @@ const GridSelector = ({images, thumbs, setThumbs}) => {
             var percentageY = 100 / (gridY - 1);
             console.log(percentageY)
             var image = images[Math.floor(Math.random() * images.length)];
+            console.log(image)
             helper.doc('actualImage').setAttribute('src', image.src);
             // 4961 / 3508
             for (var i = 0; i < gridX * gridY; i++) {
