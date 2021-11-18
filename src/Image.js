@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 
 const Image = ({match, thumbs, setThumbs}) => {
     const id = match.params.id
-    console.log(thumbs)
     if (thumbs.length) {
-        console.log(thumbs)
         return (
             <ul id="Thumbs-list">
                 <li style={{
@@ -16,7 +14,7 @@ const Image = ({match, thumbs, setThumbs}) => {
                     height: 150,
                     overflow: 'hidden'}}>{id}
                     </li>
-                    {thumbs.map(thumb => {
+                    {thumbs.map((thumb) => {
                         if (thumb.id !== thumbs[id].id) {
                             return (
                               <li key={thumb.id} style={{
@@ -25,9 +23,10 @@ const Image = ({match, thumbs, setThumbs}) => {
                                 backgroundPosition: thumb.backgroundPosition,
                                 width: thumb.width,
                                 height: thumb.height,
-                                overflow: 'hidden'}}><Link to={`/gridselector/${thumb.id}`}></Link></li>                  
+                                overflow: 'hidden'}}><Link to={`/mOsaic/${thumb.id}`}></Link></li>                  
                             ) 
                         }
+                        return null
                     })}
                                         
             </ul>

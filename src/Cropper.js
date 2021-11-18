@@ -60,9 +60,7 @@ const CropperGrid = ({src, setImages}) => {
 
     draggable = isMobile()
 
-    
-    Konva.Image.fromURL(src || "https://spgp-api-pre.65mo.fr/api/containers/spgp/download/06c80ebb-481c-46d2-956d-5871a540cbf7.png", img => {
-      console.log(img)
+    Konva.Image.fromURL(src, img => {
       img.draggable(draggable)
       img.offsetX(img.width() / 2);
       img.offsetY(img.height() / 2);
@@ -72,11 +70,6 @@ const CropperGrid = ({src, setImages}) => {
       img.rotate(rotation);
       layer.add(img);
       layer.batchDraw();
-      //   const tr = new Konva.Transformer({
-      //     node: img,
-      //     // enabledAnchors: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
-      //   });
-      //   layer.add(tr)
     });
 
 
@@ -174,7 +167,6 @@ const CropperGrid = ({src, setImages}) => {
           newScale
       };
 
-      console.log(newScale, e.evt.shiftKey )
       stage.position(newPos);
       layer.batchDraw();
     });
@@ -205,12 +197,10 @@ const CropperGrid = ({src, setImages}) => {
         <div id="apercu"></div>
       </div>
       <div className="Cropper-controls">
-        <div
+        <button
             className="Cropper-btn-crop"
             onClick={() => exportImage()}
-            variant="contained"
-            color="primary"
-          >Recadrer</div>
+          >Recadrer</button>
        
         <div>
           <Slider

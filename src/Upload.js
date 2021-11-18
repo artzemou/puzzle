@@ -26,20 +26,8 @@ const Upload = ({setImages}) => {
     const {acceptedFiles, getRootProps, getInputProps} = useDropzone({
       accept: 'image/*',
       onDrop: files => {
-          var formData = new FormData();
-          formData.append('file', files[0]);
-  
-          fetch('https://spgp-api-pre.65mo.fr/api/v2/medias/upload', {
-            method: 'POST',
-            body: formData
-          })
-          .then(res => res.json())
-          .then(json => {
-            setImages([{ src: 'https://spgp-api-pre.65mo.fr' + json.url}])
-            history.push('/crop')
-  
-          })
-          .catch(err => console.error(err));
+          setImages([{ src: URL.createObjectURL(files[0])}])
+          history.push('/crop')
         }
     });
   

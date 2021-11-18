@@ -1,32 +1,29 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Upload from './Upload.js';
 import Cropper from './Cropper.js';
 import GridSelector from './GridSelector.js';
 import Image from './Image.js';
-import DefaultImag from './07180db8.svg'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 
 
 function App() {
-  const [images, setImages] = useState([{ src: DefaultImag}]);
+  const [images, setImages] = useState([{ src: process.env.PUBLIC_URL + '/img/museum-national-d-histoire-naturelle.png'}]);
   const [thumbs, setThumbs] = useState([])
 
-
-console.log(thumbs)
   return (
     <div className="App">
       <Router>
         <nav id="Nav-bar">
-          <li><Link to="/upload">upload</Link></li>
-          <li><Link to="/crop">crop</Link></li>
-          <li><Link to="/gridselector">grid</Link></li>
+          {/* <li><button><Link to="/upload">Télecharger une image</Link></button></li>
+          <li><button><Link to="/crop">Recadrer l'image</Link></button></li>
+          <li><button><Link to="/gridselector">grid</Link></button></li> */}
         </nav>
         <Switch>
             <Route
               exact
-              path="/upload" 
+              path="/" 
               render={() => <Upload setImages={setImages}/>}
             />
             <Route
@@ -41,13 +38,10 @@ console.log(thumbs)
             />
               <Route
                   
-                  path="/gridselector/:id" 
+                  path="/mOsaic/:id" 
                   render={(props, value) => <Image {...props} thumbs={thumbs} setThumbs={setThumbs} /> }
               />
-
-
         </Switch>
-        
       </Router>
 
 

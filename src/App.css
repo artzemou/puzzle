@@ -5,7 +5,14 @@
 #Nav-bar{
   position: absolute;
   z-index: 100;
+  list-style: none;
 }
+
+#Nav-bar a{
+  text-decoration: none;
+  color: black;
+}
+
 .Cropper-controls{
   position: absolute;
   left: 0;
@@ -14,13 +21,13 @@
   z-index: 10;
 }
 .Cropper-btn-crop {
-  position: absolute;
+  /* position: absolute;
   left: 50%;
   bottom: 2rem;
   padding: 1rem;
   background-color: blueviolet;
   transform: translate(-50%, -50%);
-  cursor: pointer;
+  cursor: pointer; */
 }
 #stage-parent {
   max-width: 500px;
